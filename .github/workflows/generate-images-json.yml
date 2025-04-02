@@ -15,7 +15,7 @@ jobs:
 
       - name: 生成 images.json 文件
         run: |
-          find images -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" \) | \
+          find images/OSNote -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" \) | \
           sed 's|^|\"|' | sed 's|$|\",|' > tmp.txt
           echo "[" > images.json
           cat tmp.txt | sed '$ s/,$//' >> images.json
