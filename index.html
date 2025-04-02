@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>私密图床画廊</title>
+  <title>Private Image Gallery</title>
   <style>
     body { font-family: sans-serif; background: #f4f4f4; margin: 0; padding: 0; text-align: center; }
     h1 { color: #333; margin-top: 40px; }
@@ -15,18 +15,18 @@
 </head>
 <body>
   <div id="login">
-    <h2>请输入访问密码</h2>
-    <input type="password" id="password" placeholder="请输入密码">
-    <button onclick="checkPassword()">进入</button>
+    <h2>Enter Access Password</h2>
+    <input type="password" id="password" placeholder="Enter password">
+    <button onclick="checkPassword()">Enter</button>
   </div>
 
   <div id="gallery" style="display:none;">
-    <h1>📷 私密图床画廊</h1>
+    <h1>📷 Private Image Gallery</h1>
     <div class="gallery" id="images"></div>
   </div>
 
 <script>
-const correctHash = "ceb9f26e779f975a7b7d93328626fb0f56caeace95b4e81a288287c2df1e2c99"; // 哈希值
+const correctHash = "ceb9f26e779f975a7b7d93328626fb0f56caeace95b4e81a288287c2df1e2c99";
 
 async function sha256(text) {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
@@ -41,7 +41,7 @@ async function checkPassword() {
     document.getElementById("gallery").style.display = "block";
     loadImages();
   } else {
-    alert("密码错误，请重试。");
+    alert("Incorrect password. Please try again.");
   }
 }
 
