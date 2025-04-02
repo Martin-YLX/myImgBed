@@ -2,61 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Private Image Gallery</title>
+  <title>Martin's Image Hosting</title>
   <style>
-    body { font-family: sans-serif; background: #f4f4f4; margin: 0; padding: 0; text-align: center; }
-    h1 { color: #333; margin-top: 40px; }
-    #login, #gallery { margin-top: 60px; }
-    .gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; padding: 20px; }
-    .gallery img { max-width: 250px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    input[type="password"] { padding: 10px; font-size: 16px; width: 250px; }
-    button { padding: 10px 20px; font-size: 16px; margin-left: 10px; }
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #f0f0f0, #dfe9f3);
+      text-align: center;
+      padding: 80px 20px;
+      margin: 0;
+    }
+    h1 {
+      color: #2c3e50;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    p {
+      color: #555;
+      font-size: 18px;
+      margin: 10px 0;
+    }
+    code {
+      background: #fff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      font-family: monospace;
+      display: inline-block;
+      margin-top: 15px;
+    }
+    footer {
+      margin-top: 50px;
+      font-size: 14px;
+      color: #888;
+    }
   </style>
 </head>
 <body>
-  <div id="login">
-    <h2>Enter Access Password</h2>
-    <input type="password" id="password" placeholder="Enter password">
-    <button onclick="checkPassword()">Enter</button>
-  </div>
-
-  <div id="gallery" style="display:none;">
-    <h1>📷 Private Image Gallery</h1>
-    <div class="gallery" id="images"></div>
-  </div>
-
-<script>
-const correctHash = "ceb9f26e779f975a7b7d93328626fb0f56caeace95b4e81a288287c2df1e2c99";
-
-async function sha256(text) {
-  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
-}
-
-async function checkPassword() {
-  const input = document.getElementById("password").value;
-  const hash = await sha256(input);
-  if (hash === correctHash) {
-    document.getElementById("login").style.display = "none";
-    document.getElementById("gallery").style.display = "block";
-    loadImages();
-  } else {
-    alert("Incorrect password. Please try again.");
-  }
-}
-
-function loadImages() {
-  fetch("images.json")
-    .then(res => res.json())
-    .then(paths => {
-      const container = document.getElementById("images");
-      paths.forEach(path => {
-        const img = document.createElement("img");
-        img.src = "https://img.ylxcloud.com/" + path;
-        container.appendChild(img);
-      });
-    });
-}
-</script>
+  <h1>Welcome to Martin's Image Hosting</h1>
+  <p>This is a personal static image hosting site powered by GitHub Pages.</p>
+  <p>You can directly link to your images using the format below:</p>
+  <code>https://img.ylxcloud.com/images/OSNote/your_image.png</code>
+  <p>All images are stored in the <code>images/OSNote/</code> folder of this repository.</p>
+  <footer>
+    &copy; 2025 Martin · Powered by GitHub Pages
+  </footer>
 </body>
 </html>
